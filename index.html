@@ -7,11 +7,12 @@
     <title>NAMSTE REACT</title>
   </head>
   <body>
-    <h1>hello world from HTML !</h1>
+    <!-- <h1>hello world from HTML !</h1> -->
     <div id="jsRoot"></div>
     <div id="root"> Vandana Is Here will get replaced when root.render appends the element</div>
+    <!-- <div id="root2">This is Roote 2</div> -->
 
-    <script>
+    <!-- <script>
       const heading = document.createElement("h1");
       heading.innerHTML = "helo world from JAVASCRIPT !";
 
@@ -24,15 +25,15 @@
 
       //why 2 files ? => cuz react is being used in mobile and everywhere
       jsroot.appendChild(heading);
-    </script>
-    <script
+    </script> -->
+    <!-- <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
     ></script>
     <script
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
+    ></script> -->
     <!-- <script>
       const heading2 = React.createElement(
         "h1",
@@ -42,6 +43,6 @@
       const root = ReactDOM.createRoot(document.getElementById("root")); //creating root
       root.render(heading2); //appending/rendering child(h1) in div root
     </script> -->
-    <script src="./App.js"></script>
+    <script type="module" src="./App.js"></script>
   </body>
 </html>
