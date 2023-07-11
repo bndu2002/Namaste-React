@@ -20,7 +20,7 @@
 17. Different dev and production build
 
 
-COMPONENT STRUCTURE
+NAMASTE FOOD STRUCTURE
 
 # HEADER
 
