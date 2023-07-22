@@ -3,24 +3,56 @@ import ReactDOM from "react-dom/client";
 import '../index.css'
 import Header from "./components/Header";
 import Body from "./components/Body";
+import { Routes, Route } from 'react-router-dom';
+import About from "./components/About";
+import Contact from "./components/Contact";
+import { createBrowserRouter, RouterProvider ,Outlet } from "react-router-dom";
+import Error from "./components/Error";
+import RestroMenu from "./components/RestroMenu";
 
-
-
-const AppLayout = () => {
+const App = () => {
     return (
-        <div className="app">
-
+        <>
+        {/* Header compo should be there on every route */}
             <Header />
-
-            <Body />
-
-        </div>
+            <Outlet/>
+        </>
     )
 }
 
+const appRouter = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+        errorElement: <Error />,
+        children: [
+            {
+                path: "/",
+                element: <Body />
+
+            },
+            {
+                path: "/about",
+                element: <About />
+
+            },
+            {
+                path: "/contact",
+                element: <Contact />
+            },
+            {
+                path: "/restraunts/:resId",
+                element: <RestroMenu />
+            }
+        ]
+
+    },
+
+])
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-root.render(<AppLayout />)
+root.render(<RouterProvider router={appRouter} />)
 // //React Element using Core React
 // const heading = React.createElement('h1', { id: 'heading' }, "Namaste React 🚀")
 

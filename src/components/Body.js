@@ -2,6 +2,8 @@ import RestroCard from "./RestroCard"
 import restroList from "./utils/mockData"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
+import { Link } from "react-router-dom"
+import {SWIGGY_RESTRO_API} from "./utils/constants"
 
 
 const Body = () => {
@@ -10,8 +12,6 @@ const Body = () => {
     const [listOfRestro, setlistOfRestro] = useState([])
 
     const [filteredRestroList, setfilteredRestroList] = useState([])
-
-    const [input, setinput] = useState("")
 
     const [searchText, setsearchText] = useState("")
 
@@ -23,11 +23,10 @@ const Body = () => {
 
     let isSearchClicked = false
 
-    let intactRestroFromApi;
 
     const fetchData = async () => {
 
-        const response = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=28.7040592&lng=77.10249019999999")
+        const response = await fetch(SWIGGY_RESTRO_API)
 
         const { data } = await response.json()
 
@@ -35,7 +34,7 @@ const Body = () => {
 
         const restaurants = data?.success?.cards?.[5]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
 
-        console.log(restaurants)
+        console.log("restro list is here", restaurants)
 
         setlistOfRestro(restaurants)
 
@@ -104,15 +103,11 @@ const Body = () => {
 
     const handleSerachOnChange = (e) => {
         console.log('from onachenge brfoe', isSearchClicked)
-        // if(isSearchClicked){
-        //     console.log('from onachenge' , isSearchClicked)
-        //     setlistOfRestro(intactRestroFromApi)
-        // }
         console.log('hoo')
         setsearchText(e.target.value)
     }
 
-    return (listOfRestro.length === 0 ? <Shimmer /> :
+    return (listOfRestro?.length === 0 ? <Shimmer /> :
         <div className="body">
             {/* <div>
                 <input placeholder="write restro name" onChange={inputHandler} value={input} />
@@ -139,7 +134,12 @@ const Body = () => {
             <div className="restro_container">
 
                 {/* rendering restros from filteredRestroList so that the list can be filtered acc to serach input */}
-                {filteredRestroList.map((val, ind) => <RestroCard restroData={val} key={ind} setlistOfRestro={setlistOfRestro} listOfRestro={listOfRestro} ind={ind} />)}
+                {
+                    filteredRestroList.map((val, ind) =>
+                        <Link to={`/restraunts/${val.info.id}?name=vandana`} key={val.info.id} >
+                            <RestroCard restroData={val} setlistOfRestro={setlistOfRestro} listOfRestro={listOfRestro} />
+                        </Link>)
+                }
 
             </div>
         </div>

@@ -1,24 +1,24 @@
 # namaste react 💥
 
 # parcel Does :- https://parceljs.org/
+
 1. Dev Build
 2. Local Server
 3. HMR : hot module replacement
 4. File Watching Algorithm : writen in C++, keeps an eye on all the files and with every change refreshes the server
-5. Faster Builds : using caching in parcel-cache 
+5. Faster Builds : using caching in parcel-cache
 6. Image Optimization
 7. Minification of the files
 8. Bundling
 9. Compress the files
-10. Consistent Hashing 
-11. Code Splitting 
+10. Consistent Hashing
+11. Code Splitting
 12. Diffrential Bundling : to let the older browser also support the app
 13. Diaganostic
 14. Error Handling
 15. HTTPs
 16. Tree Shaking Algo : removes unused code
 17. Different dev and production build
-
 
 NAMASTE FOOD STRUCTURE
 
@@ -41,6 +41,7 @@ NAMASTE FOOD STRUCTURE
 - Address
 - Contact
 
+# diff b/w createBrowserRouter & BrowserRouter
 
-
-
+- createBrowserRouter : llows you to create a custom implementation of the router , provides more control over routing
+- BrowserRouter : pre-configured implementation of the routing functionality ,typically used
