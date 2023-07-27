@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import '../index.css'
 import Header from "./components/Header";
 import Body from "./components/Body";
-import { Routes, Route } from 'react-router-dom';
 import About from "./components/About";
 import Contact from "./components/Contact";
 import { createBrowserRouter, RouterProvider ,Outlet } from "react-router-dom";
@@ -53,50 +52,7 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(<RouterProvider router={appRouter} />)
-// //React Element using Core React
-// const heading = React.createElement('h1', { id: 'heading' }, "Namaste React 🚀")
 
-// console.log('heading ==>', heading)
-
-// //React Element using JSX
-// //JSX => React.createElement ( By Babel) => React Elem => JS Object => HTML Elem
-// const jsxHeading = (<div><h1 id="heading">Namste React in JSX</h1><h2>Namaste React in JSX Heading 2</h2></div>) //Eqivalent to React Element
-
-// console.log('jsxHeading ==>', jsxHeading)
-
-// //heading === jsxHeading
-
-// const Title = () => {
-//     return <h1>Coming From Title Compo</h1>
-// }
-
-// //Component Composition => rendring Title compo in HeadingCompo
-// const HeadingCompo = () => {
-//     return <div>
-//         <h1>Coming From Heading Functional Compo</h1>
-//         <Title />
-//         {Title()}
-//         <Title></Title>
-//         {jsxHeading}
-//     </div>
-// }
-
-// const BodyCompo = ()=>{
-//     return <h1>From BodyCompo</h1>
-// }
-
-// const Root2Compo = ()=>{
-//     return <h2>Root2 compo</h2>
-// }
-// const root = ReactDOM.createRoot(document.getElementById('root'))
-
-// const root2 = ReactDOM.createRoot(document.getElementById('root2'))
-
-// root.render(<><HeadingCompo /><Title/><BodyCompo/> </>)
-
-// root2.render(<Root2Compo/>)
-
-// const heading2 = React.createElement(
 //     "h1",
 //     { id: 'heading' }, //here give attributes to the tags
 //     "hello world , coming from REACT !!"//children

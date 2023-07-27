@@ -1,5 +1,4 @@
 import RestroCard from "./RestroCard"
-import restroList from "./utils/mockData"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router-dom"
@@ -44,52 +43,7 @@ const Body = () => {
         intactRestroFromApi = restaurants
     }
 
-    //normal JS variable
-    let listOfRestroJs = [
-        {
-            "info": {
-                "id": "444780",
-                "name": "Theobroma",
-                "cloudinaryImageId": "egg7tpiijieiows8e6xj",
-                "costForTwo": "₹850 for two",
-                "cuisines": [
-                    "Bakery",
-                    "Desserts"
-                ],
-                "avgRating": 4.5,
-                "sla": {
-                    "deliveryTime": 27,
-                },
-            },
-        },
-
-        {
-            "info": {
-                "id": "444781",
-                "name": "Dominos",
-                "cloudinaryImageId": "egg7tpiijieiows8e6xj",
-                "costForTwo": "₹850 for two",
-                "cuisines": [
-                    "Bakery",
-                    "Desserts"
-                ],
-                "avgRating": 3.8,
-                "sla": {
-                    "deliveryTime": 27,
-                },
-            },
-        }
-    ]
-
-    // const inputHandler = (e) => {
-    //     setinput(e.target.value)
-    //     const filter = listOfRestro.filter((val) => val.info.name.toLocaleLowerCase().includes(input))
-    //     setlistOfRestro(filter)
-    // }
-
-    // if(listOfRestro.length === 0 ){
-    //     return <Shimmer/>
-    // }
+  
 
 
     const handleSerachOnClick = () => {
