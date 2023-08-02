@@ -2,26 +2,18 @@ import React from 'react'
 
 class UserClass extends React.Component {
     //constructor used : initialize state(recommended) , binding event handlers, passing props(recommended)
-    // constructor(props) {
-    //     super(props)
-    //     // console.log('props from class' , props)
-    //     this.state = {
-    //         count: 0,
-    //         userInfo: {
-    //             name: 'dummy name',
-    //             location: 'default location',
-    //             node_id: 'dummy node id'
-    //         }
-    //     }
-    //     console.log(this.props.name + 'child constructore')
-    // }
-    state = {
-        count: 0,
-        userInfo: {
-            name: 'dummy name',
-            location: 'default location',
-            node_id: 'dummy node id'
+    constructor(props) {
+        super(props)
+        // console.log('props from class' , props)
+        this.state = {
+            count: 0,
+            userInfo: {
+                name: 'dummy name',
+                location: 'default location',
+                node_id: 'dummy node id'
+            }
         }
+        console.log(this.props.name + 'child constructore')
     }
 
     async componentDidMount() {

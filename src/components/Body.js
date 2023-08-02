@@ -3,10 +3,14 @@ import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router-dom"
 import {SWIGGY_RESTRO_API} from "./utils/constants"
+import useOnlineStatus from "./utils/useOnlineStatus"
+import useRestroApi from "./utils/useRestroApi"
 
 
 const Body = () => {
 
+  // const {listOfRestro , filteredRestroList} = useRestroApi()
+   
     //state variable => super powerfull react variable
     const [listOfRestro, setlistOfRestro] = useState([])
 
@@ -14,45 +18,42 @@ const Body = () => {
 
     const [searchText, setsearchText] = useState("")
 
+    const onlineStatus = useOnlineStatus()
+
+    console.log('useOnlineStatus called BODY ...........')
+
     useEffect(() => {
-
         fetchData()
-
     }, [])
 
-    let isSearchClicked = false
-
-
+    
     const fetchData = async () => {
-
         const response = await fetch(SWIGGY_RESTRO_API)
 
         const { data } = await response.json()
 
-        console.log(data)
+        console.log("data from Body",data)
 
-        const restaurants = data?.success?.cards?.[5]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
+        const restaurants = data?.success?.cards?.[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
 
         console.log("restro list is here", restaurants)
 
-        setlistOfRestro(restaurants)
+        setlistOfRestro(restaurants) 
 
         //filteredRestroList => copy of listOfRestro 
         setfilteredRestroList(restaurants)
 
         intactRestroFromApi = restaurants
+       
     }
 
   
-
-
     const handleSerachOnClick = () => {
 
         //filtering from listOfRestro so that after filtering once user can again change the search input and get the result from listOfRestro 
         const filterRestro = listOfRestro.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
         setfilteredRestroList(filterRestro)
-        isSearchClicked = true
-        console.log('from obclick', isSearchClicked)
+        
     }
 
     const handleSerachOnChange = (e) => {
@@ -60,6 +61,8 @@ const Body = () => {
         console.log('hoo')
         setsearchText(e.target.value)
     }
+
+    if(onlineStatus == false) return <h1>looks like you are offline</h1>
 
     return (listOfRestro?.length === 0 ? <Shimmer /> :
         <div className="body">
@@ -79,7 +82,8 @@ const Body = () => {
                     //data is filtered but the UI does not update why ? ideally the the UI should show THeobroma only
 
                     const filter = listOfRestro.filter((restro) => restro.info.avgRating > 4)
-
+                    
+                    //topRatedRestro Filter
                     setlistOfRestro(filter)
                 }}>Top Rated Restaurants</button>
                 <br />

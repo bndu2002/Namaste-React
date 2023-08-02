@@ -1,41 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Shimmer from './Shimmer'
 import { useParams } from 'react-router-dom'
-import { SWIGGY_RESTRO_MENU_API } from "./utils/constants"
+import useRestroMenu from './utils/useRestroMenu'
 
-
+//before useRestroMenu => RestroMenu was doing 2 things : 1. fetching data , 2. displaying data
+//after useRestroMenu => RestroMenu has single responsiility (display the data)
 function RestroMenu() {
 
     const [isVegClicked, setisVegClicked] = useState(false)
 
     const { resId } = useParams()
 
-    // const query = new URLSearchParams(window.location.search) //to access the query param
-    //.search contains all the query params
-
-    // const nameQuery = query.get('name')
+    const resInfo = useRestroMenu(resId)
 
     console.log('id from useParams', resId)
 
-    const [resInfo, setresInfo] = useState(null)
-
-    useEffect(() => {
-
-        fetchMenu()
-
-    }, [])
-
-
-    const fetchMenu = async () => {
-        const response = await fetch(SWIGGY_RESTRO_MENU_API + resId)
-
-        const json = await response.json()
-
-        console.log('json from restromenu compo', json)
-
-        setresInfo(json?.data)
-
-    }
+    console.log('resInfo from RetroMenu ===>' , resInfo)
 
     //  ?? => nullish coalescing operator, logical operator introduced in ECMAScript 2020 (ES11),
     // > to handle null or undefined values

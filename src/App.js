@@ -1,20 +1,27 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import '../index.css'
 import Header from "./components/Header";
 import Body from "./components/Body";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import { createBrowserRouter, RouterProvider ,Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./components/Error";
 import RestroMenu from "./components/RestroMenu";
+
+//import Grocery from "./components/Grocery";
+
+//when large scale app split the code in 1+ bundles , right now we have only 1 bundle (only on JS file)
+// Break down you app into smaller parts => [code chunking,dynamic import, code splitting, chunking, lazyLoding(on demand loading)]
+
+const Grocery = lazy(() => import("./components/Grocery"))
 
 const App = () => {
     return (
         <>
-        {/* Header compo should be there on every route */}
+            {/* Header compo should be there on every route */}
             <Header />
-            <Outlet/>
+            <Outlet />
         </>
     )
 }
@@ -42,6 +49,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restraunts/:resId",
                 element: <RestroMenu />
+            },
+            {
+                path: "/grocery",
+                element: <Suspense fallback={<h1>Loding.....</h1>}><Grocery /></Suspense>
             }
         ]
 

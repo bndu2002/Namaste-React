@@ -45,3 +45,5 @@ NAMASTE FOOD STRUCTURE
 
 - createBrowserRouter : llows you to create a custom implementation of the router , provides more control over routing
 - BrowserRouter : pre-configured implementation of the routing functionality ,typically used
+
+# linters (read about it)
