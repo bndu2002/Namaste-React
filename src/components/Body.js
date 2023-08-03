@@ -9,12 +9,14 @@ import useRestroApi from "./utils/useRestroApi"
 
 const Body = () => {
 
-  // const {listOfRestro , filteredRestroList} = useRestroApi()
+   const { listOfRestro, filteredRestroList ,setfilteredRestroList ,setlistOfRestro } = useRestroApi()
+
+   console.log("useRestroApi() ====>",useRestroApi())
    
     //state variable => super powerfull react variable
-    const [listOfRestro, setlistOfRestro] = useState([])
+    // const [listOfRestro, setlistOfRestro] = useState([])
 
-    const [filteredRestroList, setfilteredRestroList] = useState([])
+    // const [filteredRestroList, setfilteredRestroList] = useState([])
 
     const [searchText, setsearchText] = useState("")
 
@@ -22,30 +24,30 @@ const Body = () => {
 
     console.log('useOnlineStatus called BODY ...........')
 
-    useEffect(() => {
-        fetchData()
-    }, [])
+    // useEffect(() => {
+    //     fetchData()
+    // }, [])
 
     
-    const fetchData = async () => {
-        const response = await fetch(SWIGGY_RESTRO_API)
+    // const fetchData = async () => {
+    //     const response = await fetch(SWIGGY_RESTRO_API)
 
-        const { data } = await response.json()
+    //     const { data } = await response.json()
 
-        console.log("data from Body",data)
+    //     console.log("data from Body",data)
 
-        const restaurants = data?.success?.cards?.[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
+    //     const restaurants = data?.success?.cards?.[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
 
-        console.log("restro list is here", restaurants)
+    //     console.log("restro list is here", restaurants)
 
-        setlistOfRestro(restaurants) 
+    //     setlistOfRestro(restaurants) 
 
-        //filteredRestroList => copy of listOfRestro 
-        setfilteredRestroList(restaurants)
+    //     //filteredRestroList => copy of listOfRestro 
+    //     setfilteredRestroList(restaurants)
 
-        intactRestroFromApi = restaurants
+    //     intactRestroFromApi = restaurants
        
-    }
+    // }
 
   
     const handleSerachOnClick = () => {

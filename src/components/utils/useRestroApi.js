@@ -23,7 +23,7 @@ const useRestroApi = () => {
 
         console.log(data)
 
-        const restaurants = data?.success?.cards?.[5]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
+        const restaurants = data?.success?.cards?.[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
 
         console.log("restro list is here", restaurants)
 
@@ -36,7 +36,17 @@ const useRestroApi = () => {
 
 
     }
-    return { listOfRestro, filteredRestroList }
+    
+    //returned object is using ES6 shorthand property syntax.
+    // key and value have the same name ? can omit the value, and JS automatically use the variable with the same name
+    //     equivalent to = return {
+    //   listOfRestro: listOfRestro,
+    //   filteredRestroList: filteredRestroList,
+    //   setfilteredRestroList: setfilteredRestroList,
+    //   setlistOfRestro: setlistOfRestro,
+    // };
+
+    return { listOfRestro, filteredRestroList, setfilteredRestroList, setlistOfRestro }
 }
 
 export default useRestroApi
