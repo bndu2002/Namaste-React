@@ -17,7 +17,10 @@ const useRestroApi = () => {
 
     const fetchRestro = async () => {
 
+        //will return a whole http response containing : header , body , status code etc
         const response = await fetch(SWIGGY_RESTRO_API)
+
+        console.log('response from useRestroApi =====>' , response)
 
         const { data } = await response.json()
 
@@ -31,8 +34,6 @@ const useRestroApi = () => {
 
         //filteredRestroList => copy of listOfRestro 
         setfilteredRestroList(restaurants)
-
-        intactRestroFromApi = restaurants
 
 
     }

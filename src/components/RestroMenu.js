@@ -34,11 +34,11 @@ function RestroMenu() {
     return (resInfo === null ? <Shimmer /> :
         <div className='menu'>
 
-            <h1>{name}</h1>
-            <h3>{cuisines.join(" , ")} - {costForTwoMessage}</h3>
+            <h1 className='font-bold text-[36px] py-4'>{name}</h1>
+            <h3 className='font-bold'>{cuisines.join(" , ")} - {costForTwoMessage}</h3>
 
-            <h2>menu</h2>
-            <button onClick={() => setisVegClicked(!isVegClicked)}>{isVegClicked ? "veg & non-veg" : "only veg"}</button>
+            <h2 className='text-red-700'>menu</h2>
+            <button className="hover:bg-slate-300 py-4" onClick={() => setisVegClicked(!isVegClicked)}>{isVegClicked ? "veg & non-veg" : "only veg"}</button>
             <ul >
 
                 {

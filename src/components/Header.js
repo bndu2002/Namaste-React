@@ -26,17 +26,17 @@ const Header = () => {
     }
 
     return (
-        <div className="header">
-            <div className="logo_container"><img className="logo" src={LOGO_URL} alt="logo" /></div>
-            <div className="nav_items">
-                <ul>
-                    <li>Online Status : {onlineStatus ? "✅" : "🔴" }</li>
-                    <li><Link to="/">Home</Link></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><Link to="/contact">Contact Us</Link></li>
-                    <li><Link to="/grocery">Grocery</Link></li>
-                    <li>Cart</li>
-                    <button className="btn" onClick={handleBtn}>{btnNameReact}</button>
+        <div className="flex justify-between bg-pink-300 shadow-lg mb-2 md:bg-yellow-300" >
+            <div className="logo_container"><img className="w-44 h-28" src={LOGO_URL} alt="logo" /></div>
+            <div className="flex items-center ">
+                <ul className="flex p-4 m-4 font-bold text-[23px] ">
+                    <li className="px-4">Online Status : {onlineStatus ? "✅" : "🔴" }</li>
+                    <li className="px-4"><Link to="/">Home</Link></li>
+                    <li className="px-4"><a href="/about">About Us</a></li>
+                    <li className="px-4"><Link to="/contact">Contact Us</Link></li>
+                    <li className="px-4"><Link to="/grocery">Grocery</Link></li>
+                    <li className="px-4"> Cart</li>
+                    <button className="px-4" onClick={handleBtn}>{btnNameReact}</button>
                 </ul>
             </div>
         </div>
