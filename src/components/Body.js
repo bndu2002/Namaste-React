@@ -1,10 +1,11 @@
-import RestroCard from "./RestroCard"
+import RestroCard, { withPromotedLabel } from "./RestroCard"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router-dom"
 import { SWIGGY_RESTRO_API } from "./utils/constants"
 import useOnlineStatus from "./utils/useOnlineStatus"
 import useRestroApi from "./utils/useRestroApi"
+
 
 
 const Body = () => {
@@ -22,33 +23,9 @@ const Body = () => {
 
     const onlineStatus = useOnlineStatus()
 
+    const RestroCardPromoted = withPromotedLabel(RestroCard)
+
     console.log('useOnlineStatus called BODY ...........')
-
-    // useEffect(() => {
-    //     fetchData()
-    // }, [])
-
-
-    // const fetchData = async () => {
-    //     const response = await fetch(SWIGGY_RESTRO_API)
-
-    //     const { data } = await response.json()
-
-    //     console.log("data from Body",data)
-
-    //     const restaurants = data?.success?.cards?.[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
-
-    //     console.log("restro list is here", restaurants)
-
-    //     setlistOfRestro(restaurants) 
-
-    //     //filteredRestroList => copy of listOfRestro 
-    //     setfilteredRestroList(restaurants)
-
-    //     intactRestroFromApi = restaurants
-
-    // }
-
 
     const handleSerachOnClick = () => {
 
@@ -78,7 +55,7 @@ const Body = () => {
 
                         const filter = listOfRestro.filter((restro) => restro.info.avgRating > 4)
 
-                        console.log('filtered restro from BODY ..' , filter)
+                        console.log('filtered restro from BODY ..', filter)
                         //topRatedRestro Filter
                         setfilteredRestroList(filter)
                     }}>Top Rated Restaurants</button>
@@ -93,7 +70,12 @@ const Body = () => {
                 {
                     filteredRestroList.map((val, ind) =>
                         <Link to={`/restraunts/${val.info.id}?name=vandana`} key={val.info.id} >
-                            <RestroCard restroData={val} setlistOfRestro={setlistOfRestro} listOfRestro={listOfRestro} />
+                            {/* if restro is promoted render higher order compo */}
+                            {
+                                val?.info?.promoted ? <RestroCardPromoted restroData={val}  /> :
+                                    <RestroCard restroData={val}  />
+                            }
+
                         </Link>)
                 }
 

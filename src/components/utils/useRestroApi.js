@@ -30,6 +30,14 @@ const useRestroApi = () => {
 
         console.log("restro list is here", restaurants)
 
+        // const promotedRestroList = restaurants.map(val => {
+        //     if(val.info.promoted){
+        //         console.log(val.info.name)
+        //     }
+        // })
+
+        //console.log(promotedRestroList)
+
         setlistOfRestro(restaurants)
 
         //filteredRestroList => copy of listOfRestro 

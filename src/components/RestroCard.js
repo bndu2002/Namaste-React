@@ -1,29 +1,5 @@
 import { CLOUDINARY_URL } from "./utils/constants"
 
-//practiced promise
-// const dummyAsync = () => {
-//     let functionReturningPromise = new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             const num = Math.random()
-
-//             if(num > 0.5){
-//                 resolve("yes num is more that 20")
-//             }else{
-//                 reject(new Error('Something went wrong'))
-//             }
-//         }, 5000)
-
-
-//     })
-
-//     //functionReturningPromise.then(() => console.log("resolve from .then")).catch(() => console.log("reject from .then"))
-
-//     return functionReturningPromise.then((result)=>console.log(result)).catch((error)=>console.log(error.message))
-
-// }
-
-// dummyAsync()
-
 const RestroCard = ({ restroData }) => {
 
     const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } = restroData?.info //optional chaining
@@ -39,6 +15,18 @@ const RestroCard = ({ restroData }) => {
             <h4>{sla.deliveryTime} min</h4>
         </div>
     )
+}
+
+// Higher Order Compo => function taking compo as input and returns new compo, enhancer
+export const withPromotedLabel = (Bandu) => {
+    //returns RestroCardPromoted
+    return ({restroData}) => {
+        //console.log('restroData from higher order compo ' , restroData)
+        return <>
+            <label className="absolute bg-black text-white rounded-md m-2 p-1">Promoted</label>
+            <Bandu restroData = {restroData}/>
+        </>
+    }
 }
 
 
