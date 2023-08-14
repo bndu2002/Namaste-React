@@ -4,9 +4,14 @@ import { useParams } from 'react-router-dom'
 import useRestroMenu from './utils/useRestroMenu'
 import RestroCategory from './RestroCategory'
 
+
 //before useRestroMenu => RestroMenu was doing 2 things : 1. fetching data , 2. displaying data
 //after useRestroMenu => RestroMenu has single responsiility (display the data)
 function RestroMenu() {
+
+    const [expand, setexpand] = useState(true)
+
+    const [collapseIndex, setcollapseIndex] = useState(0)
 
     const [isVegClicked, setisVegClicked] = useState(false)
 
@@ -32,7 +37,7 @@ function RestroMenu() {
     const categories = resInfo?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(val => val.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
 
     console.log("categories", categories)
-
+    
     return (resInfo === null ? <Shimmer /> :
         <div className='text-center'>
 
@@ -42,9 +47,24 @@ function RestroMenu() {
 
             <button onClick={() => setisVegClicked(!isVegClicked)}>{isVegClicked ? "both ?" : "only veg ?"}</button>
 
+            
             {/* categories accordian => for each category */}
 
-            {categories.map(category => <RestroCategory key={category?.card?.card?.title} categoryData={category?.card?.card} isVegClicked={isVegClicked} />)}
+            {categories.map((category, ind) =>
+            //controlled <RestroCategory/> compo
+                <RestroCategory
+                    key={category?.card?.card?.title}
+                    categoryData={category?.card?.card}
+                    isVegClicked={isVegClicked}
+                    collapse={ind === collapseIndex ? expand : false}
+                    setcollapseIndex={()=>setcollapseIndex(ind)}
+                    index = {ind}
+                    expand = {expand}
+                    setexpand = {setexpand}
+                    collapseIndex={collapseIndex}
+                    />)
+                   
+            }
 
         </div>
     )
