@@ -1,9 +1,12 @@
+import { useContext } from "react"
 import { CLOUDINARY_URL } from "./utils/constants"
+import UserContext from "./utils/UserContext"
 
 const RestroCard = ({ restroData }) => {
 
     const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } = restroData?.info //optional chaining
 
+    const {loggedinUser} = useContext(UserContext)
 
     return (
         <div className="m-4 p-4 w-[250px] h-[400px] rounded-lg bg-gray-200 hover:bg-gray-400">
@@ -13,6 +16,7 @@ const RestroCard = ({ restroData }) => {
             <h4>{avgRating} stars</h4>
             <h4>{costForTwo}</h4>
             <h4>{sla.deliveryTime} min</h4>
+            <h4>User : {loggedinUser}</h4>
         </div>
     )
 }

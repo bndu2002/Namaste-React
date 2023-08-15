@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 // import '../index.css'
 import Header from "./components/Header";
@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./components/Error";
 import RestroMenu from "./components/RestroMenu";
+import UserContext from "./components/utils/UserContext";
 
 //import Grocery from "./components/Grocery";
 
@@ -17,11 +18,28 @@ import RestroMenu from "./components/RestroMenu";
 const Grocery = lazy(() => import("./components/Grocery"))
 
 const App = () => {
+
+    const [userName, setuserName] = useState("")
+
+    useEffect(() => {
+        //make an api call here to fetch the user unfo
+        const data = {
+            name: "vandana sharma"
+        }
+        setuserName(data?.name)
+    }, [])
+
     return (
         <>
-            {/* Header compo should be there on every route */}
-            <Header />
-            <Outlet />
+
+            <UserContext.Provider value={{ loggedinUser: "Yuzuru Hanyu" }}>
+                {/* Header compo should be there on every route */}
+                <UserContext.Provider value={{ loggedinUser: userName }}>
+                    <Header />
+                </UserContext.Provider>
+                <Outlet />
+            </UserContext.Provider>
+
         </>
     )
 }
@@ -44,7 +62,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/contact",
-                element: <Contact />
+                element: <Contact>this is the children of contact compo. its in the opening and closing tag !... can pass anything JSX or React Compo<Body/></Contact>
             },
             {
                 path: "/restraunts/:resId",

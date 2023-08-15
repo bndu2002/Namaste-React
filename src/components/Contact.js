@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Contact() {
+function Contact({children}) {
   return (
-    <div>Contact</div>
+    <div>{children}</div>
   )
 }
 
