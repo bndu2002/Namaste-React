@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer"
 import { Link } from "react-router-dom"
 import {SWIGGY_RESTRO_API} from "./utils/constants"
 
+let count = 0
 
 const Body = () => {
 
@@ -14,16 +15,20 @@ const Body = () => {
 
     const [searchText, setsearchText] = useState("")
 
-    useEffect(() => {
+    // useEffect(() => {
+        
+    //     //will only be called with initial render
+    //     fetchData()
 
-        fetchData()
-
-    }, [])
+    // }, [])
 
     let isSearchClicked = false
 
+   
 
     const fetchData = async () => {
+
+        count =  count + 1
 
         const response = await fetch(SWIGGY_RESTRO_API)
 
@@ -31,7 +36,7 @@ const Body = () => {
 
         console.log(data)
 
-        const restaurants = data?.success?.cards?.[5]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
+        const restaurants = data?.success?.cards?.[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
 
         console.log("restro list is here", restaurants)
 
@@ -43,7 +48,14 @@ const Body = () => {
         intactRestroFromApi = restaurants
     }
 
-  
+
+ fetchData() //count keeps on increasing , unnesessary api calls
+
+ console.log(count)
+//without making api call in useEffect also it works the same. BUT it cons =>
+// 1. api will be called everytime the compo renders (state or prop update ).
+// 2. If the component re-renders frequently, you might end up making unnecessary or duplicate API calls
+// 3. If API call updates the component state or causes a re-render, it could lead to an infinite loop if not carefully handled
 
 
     const handleSerachOnClick = () => {

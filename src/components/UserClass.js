@@ -2,27 +2,27 @@ import React from 'react'
 
 class UserClass extends React.Component {
     //constructor used : initialize state(recommended) , binding event handlers, passing props(recommended)
-    // constructor(props) {
-    //     super(props)
-    //     // console.log('props from class' , props)
-    //     this.state = {
-    //         count: 0,
-    //         userInfo: {
-    //             name: 'dummy name',
-    //             location: 'default location',
-    //             node_id: 'dummy node id'
-    //         }
-    //     }
-    //     console.log(this.props.name + 'child constructore')
-    // }
-    state = {
-        count: 0,
-        userInfo: {
-            name: 'dummy name',
-            location: 'default location',
-            node_id: 'dummy node id'
+    constructor(props) {
+        super(props)
+        // console.log('props from class' , props)
+        this.state = {
+            count: 0,
+            userInfo: {
+                name: 'dummy name',
+                location: 'default location',
+                node_id: 'dummy node id'
+            }
         }
+        console.log(this.props.name + 'child constructore called')
     }
+    // state = {
+    //     count: 0,
+    //     userInfo: {
+    //         name: 'dummy name',
+    //         location: 'default location',
+    //         node_id: 'dummy node id'
+    //     }
+    // }
 
     async componentDidMount() {
 
@@ -32,23 +32,23 @@ class UserClass extends React.Component {
 
         const json = await response.json()
 
-        console.log("data from componnetDidMount", json)
+        console.log("data from vandana sharma componnetDidMount", json)
 
         this.setState({
             userInfo: json
         })
 
-      //  this.timer = setInterval(() => console.log('coming from setInterval'), 1000)
+        //  this.timer = setInterval(() => console.log('coming from setInterval'), 1000)
     }
 
     componentDidUpdate() {
-        console.log('component updates')
+        console.log('vandana sharma component updates')
 
     }
 
     componentWillUnmount() {
-        console.log('component unmounted')
-       // clearInterval(this.timer)
+        console.log('vandana sharma component unmounted')
+        // clearInterval(this.timer)
     }
 
     render() {
