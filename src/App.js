@@ -6,16 +6,20 @@ import Body from "./components/Body";
 import { Routes, Route } from 'react-router-dom';
 import About from "./components/About";
 import Contact from "./components/Contact";
-import { createBrowserRouter, RouterProvider ,Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./components/Error";
 import RestroMenu from "./components/RestroMenu";
 
 const App = () => {
     return (
         <>
-        {/* Header compo should be there on every route */}
+            {/* Header compo should be there on every route hence not mapped in app=Router */}
             <Header />
-            <Outlet/>
+
+            {/* when passed children to show them dynamically as per the routw need <Outlet/>. it gets replaced with the corresponding compo to the route */}
+            {/* outlet gets replaced with the children matching the route */}
+            <Outlet />
+
         </>
     )
 }
@@ -45,8 +49,8 @@ const appRouter = createBrowserRouter([
                 element: <RestroMenu />
             }
         ]
-
     },
+
 
 ])
 

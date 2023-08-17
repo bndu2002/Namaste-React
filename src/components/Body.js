@@ -32,7 +32,7 @@ const Body = () => {
 
         console.log(data)
 
-        const restaurants = data?.success?.cards?.[5]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
+        const restaurants = data?.success?.cards?.[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
 
         console.log("restro list is here", restaurants)
 
