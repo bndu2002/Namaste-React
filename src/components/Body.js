@@ -15,12 +15,12 @@ const Body = () => {
 
     const [searchText, setsearchText] = useState("")
 
-    // useEffect(() => {
+    useEffect(() => {
         
-    //     //will only be called with initial render
-    //     fetchData()
+        //will only be called with initial render
+        fetchData()
 
-    // }, [])
+    }, [])
 
     let isSearchClicked = false
 
@@ -49,7 +49,7 @@ const Body = () => {
     }
 
 
- fetchData() //count keeps on increasing , unnesessary api calls
+// fetchData() //count keeps on increasing , unnesessary api calls
 
  console.log(count)
 //without making api call in useEffect also it works the same. BUT it cons =>
